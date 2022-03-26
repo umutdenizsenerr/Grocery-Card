@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+}
+.AddItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 20px;
+  background-color: green;
+  padding: 2vh;
+}
+h5 {
+  display: flex;
+  justify-content: center;
+}
+img {
+  display: flex;
+}
+.ListContainer {
+  display: flex;
+  align-items: center;
+  border: 1vh solid rgb(0, 140, 255);
+  margin: 5vh;
+}
+.Items {
+  display: flex;
+  align-items: center;
+}
+.Button {
+  background-color: red;
+  margin: 1vh;
+}
+ul {
+  list-style-type: square;
+}
