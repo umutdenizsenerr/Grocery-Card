@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import GroceryCart from "./pages/WelcomePage/GroceryCart";
 const App = () => {
   return (

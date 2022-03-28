@@ -29,6 +29,7 @@ h3 {
 }
 img {
   display: flex;
+  height: 10vh;
 }
 .ListContainer {
   display: flex;
