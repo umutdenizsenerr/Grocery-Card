@@ -1,0 +1,31 @@
+.list-item-thumb {
+  border-radius: 50vh;
+  display: flex;
+  height: 10vh;
+}
+.list-item-name {
+  display: flex;
+  flex: 2;
+  text-align: start;
+  color: white;
+}
+.list-item-thumb-container {
+  display: flex;
+  flex: 1;
+}
+.list-item {
+  background-color: rgb(136, 2, 96);
+  display: flex;
+  padding: 2vh;
+  margin-bottom: 1vh;
+  /*TO DO en alttaki boşluğu sil css selectors*/
+  border-radius: 5px;
+  align-items: center;
+  width: 50%;
+}
+.list-container {
+  display: flex;
+  background-color: cornsilk;
+  align-items: center;
+  flex-direction: column;
+}
