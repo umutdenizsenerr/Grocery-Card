@@ -5,9 +5,11 @@
 }
 .list-item-name {
   display: flex;
-  flex: 2;
-  text-align: start;
+  justify-content: center;
+  text-align: center;
   color: white;
+
+  flex: 4;
 }
 .list-item-thumb-container {
   display: flex;
@@ -17,15 +19,22 @@
   background-color: rgb(136, 2, 96);
   display: flex;
   padding: 2vh;
-  margin-bottom: 1vh;
-  /*TO DO en alttaki boşluğu sil css selectors*/
   border-radius: 5px;
   align-items: center;
+  justify-content: space-evenly;
   width: 50%;
+}
+.list-item:not(:last-child) {
+  margin-bottom: 1vh;
 }
 .list-container {
   display: flex;
   background-color: cornsilk;
   align-items: center;
   flex-direction: column;
+}
+.list-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

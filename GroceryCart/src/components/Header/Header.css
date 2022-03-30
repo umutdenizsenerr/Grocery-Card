@@ -1,0 +1,14 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: blueviolet;
+  margin-bottom: 2vh;
+  height: 30vh;
+}
+.cart-image-container {
+  display: flex;
+}
+.cart-image {
+  height: 10vh;
+}

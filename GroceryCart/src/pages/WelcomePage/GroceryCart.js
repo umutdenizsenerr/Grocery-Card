@@ -7,6 +7,7 @@ const GroceryCart = (props) => {
 
   return (
     <div>
+      <Header items={items} setItems={props.setItems} />
       <List items={items} setItems={setItems} />
     </div>
   );

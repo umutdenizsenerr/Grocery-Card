@@ -32,7 +32,7 @@ const List = (props) => {
         </div>
 
         <div className="list-item-name">{element.strDrink}</div>
-        <div>
+        <div className="list-button-container">
           <Button type="icon" iconName="add" />
           <Button type="icon" iconName="details" />
         </div>
