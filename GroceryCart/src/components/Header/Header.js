@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Header.css";
 const Header = (props) => {
@@ -15,8 +15,9 @@ const Header = (props) => {
           src="https://cdn.pixabay.com/photo/2013/07/12/14/53/cart-148964_960_720.png"
           alt=""
         />
+        <div className="length-of-list">{props.groceryCartList.length}</div>
       </div>
-      <SearchBar />
+      <SearchBar setSearchTerm={props.setSearchTerm} />
       <h3>Umut Market</h3>
     </div>
   );

@@ -8,7 +8,19 @@
 }
 .cart-image-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .cart-image {
   height: 10vh;
+}
+.length-of-list {
+  border-radius: 50px;
+  background-color: red;
+  width: 3vh;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

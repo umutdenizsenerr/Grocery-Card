@@ -2,7 +2,6 @@ import { AiOutlinePlusCircle, AiOutlineSearch } from "react-icons/ai";
 import { BiDetail } from "react-icons/bi";
 import "./Button.css";
 
-//TO DO button kendi propertilerini kaldır
 const Button = (props) => {
   const iconList = {
     add: <AiOutlinePlusCircle size={32} />,
