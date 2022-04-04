@@ -6,6 +6,10 @@ const AddBar = (props) => {
     event.preventDefault();
     props.setSearchTerm(event.target.value);
   };
+  const handleSearchButton = () => {
+    props.setSearchButtonClicked((prev) => prev + 1);
+  };
+
   return (
     <div className="search-bar-button-container">
       <div className="search-bar-container">
@@ -14,9 +18,15 @@ const AddBar = (props) => {
           type="text"
           placeholder="What are you looking for?"
           onChange={handleSearch}
+          id="search-box"
         />
       </div>
-      <Button type="icon" className="searchButton" iconName="search" />
+      <Button
+        type="icon"
+        className="searchButton"
+        iconName="search"
+        onClick={handleSearchButton}
+      />
     </div>
   );
 };

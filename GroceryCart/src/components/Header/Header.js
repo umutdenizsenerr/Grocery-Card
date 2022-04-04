@@ -17,7 +17,11 @@ const Header = (props) => {
         />
         <div className="length-of-list">{props.groceryCartList.length}</div>
       </div>
-      <SearchBar setSearchTerm={props.setSearchTerm} />
+      <SearchBar
+        setSearchTerm={props.setSearchTerm}
+        setSearchList={props.setSearchList}
+        setSearchButtonClicked={props.setSearchButtonClicked}
+      />
       <h3>Umut Market</h3>
     </div>
   );

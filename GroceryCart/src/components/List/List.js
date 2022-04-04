@@ -6,25 +6,35 @@ const List = (props) => {
   const [drinkList, setDrinkList] = useState([]);
 
   useEffect(() => {
-    getCocktailNames();
-  }, []);
+    getCocktailNames(props.searchButtonClicked);
+  }, [props.searchButtonClicked]);
   /*  TODO grocerycartın içi
   const handleRemove = (event) => {
     let newArr = [...drinkNames];
     newArr.splice(event.target.value, 1);
     setDrinkNames(newArr);
   };*/
-  const getCocktailNames = async () => {
-    const base_url =
-      "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
+  const getCocktailNames = async (buttonClicked) => {
+    if (!buttonClicked) {
+      const base_url =
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
 
-    //TO DO then, catch  -> try, catch
-    await axios
-      .get(base_url)
-      .then((response) => setDrinkList(response.data.drinks))
-      .catch((error) => console.log(error));
+      //TO DO then, catch  -> try, catch
+      await axios
+        .get(base_url)
+        .then((response) => setDrinkList(response.data.drinks))
+        .catch((error) => console.log(error));
+    } else {
+      const url =
+        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
+        document.getElementById("search-box").value.toLowerCase();
+
+      await axios
+        .get(url)
+        .then((response) => setDrinkList(response.data.drinks))
+        .catch((error) => console.log(error));
+    }
   };
-
   const handleAdd = (event) => {
     event.preventDefault();
     props.setGroceryCartList([

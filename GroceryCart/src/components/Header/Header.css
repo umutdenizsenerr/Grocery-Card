@@ -4,7 +4,7 @@
   justify-content: space-evenly;
   background-color: blueviolet;
   margin-bottom: 2vh;
-  height: 30vh;
+  height: 15vh;
 }
 .cart-image-container {
   display: flex;
@@ -13,7 +13,7 @@
   justify-content: center;
 }
 .cart-image {
-  height: 10vh;
+  height: 7vh;
 }
 .length-of-list {
   border-radius: 50px;

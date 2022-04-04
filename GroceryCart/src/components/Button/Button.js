@@ -1,5 +1,5 @@
 import { AiOutlinePlusCircle, AiOutlineSearch } from "react-icons/ai";
-import { BiDetail } from "react-icons/bi";
+import { BiDetail, BiShow } from "react-icons/bi";
 import "./Button.css";
 
 const Button = (props) => {
@@ -7,6 +7,7 @@ const Button = (props) => {
     add: <AiOutlinePlusCircle size={32} />,
     details: <BiDetail size={32} />,
     search: <AiOutlineSearch />,
+    show: <BiShow />,
   };
   const renderContent = () => {
     if (props.type === "icon") {

@@ -1,5 +1,6 @@
 .add-button,
-.details-button {
+.details-button,
+.show-button {
   border-radius: 150px;
   background-color: rgb(136, 2, 96);
   border-width: 0px;
@@ -11,13 +12,15 @@
   flex-direction: column;
 }
 .add-button:hover,
-.details-button:hover {
+.details-button:hover,
+.show-button:hover {
   background-color: beige;
 }
 
 .add-button:active,
 .details-button:active,
-.search-button:active {
+.search-button:active,
+.show-button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
