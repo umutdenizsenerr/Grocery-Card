@@ -1,0 +1,15 @@
+.search-bar {
+  border-radius: 50px;
+  margin-right: 2vh;
+  width: 30vh;
+  height: 4vh;
+}
+input[type="text"] {
+  color: #979797;
+  padding-left: 5%;
+  background-repeat: repeat-x;
+}
+
+.search-bar-button-container {
+  display: flex;
+}

@@ -1,0 +1,36 @@
+.add-button,
+.details-button,
+.show-button {
+  border-radius: 150px;
+  background-color: rgb(136, 2, 96);
+  border-width: 0px;
+  width: 5vh;
+  height: 5vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.add-button:hover,
+.details-button:hover,
+.show-button:hover {
+  background-color: beige;
+}
+
+.add-button:active,
+.details-button:active,
+.search-button:active,
+.show-button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.search-button {
+  border-radius: 100px;
+  background-color: beige;
+  border-width: 0px;
+  width: 5vh;
+}
+.search-button:hover {
+  background-color: rgb(136, 2, 96);
+}
