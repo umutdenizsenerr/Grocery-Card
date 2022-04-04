@@ -14,6 +14,7 @@ const List = (props) => {
     newArr.splice(event.target.value, 1);
     setDrinkNames(newArr);
   };*/
+  //umut
   const getCocktailNames = async (buttonClicked) => {
     if (!buttonClicked) {
       const base_url =
