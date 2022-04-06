@@ -1,9 +1,12 @@
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Header.css";
+import { Link } from "react-router-dom";
+import Button from "../Button/Button";
 const Header = (props) => {
   return (
     <div className="header-container">
+      <Link to="/">Home Page</Link>
       <link
         href="https://fonts.googleapis.com/css?family=Lobster"
         rel="stylesheet"
@@ -15,7 +18,13 @@ const Header = (props) => {
           src="https://cdn.pixabay.com/photo/2013/07/12/14/53/cart-148964_960_720.png"
           alt=""
         />
-        <div className="length-of-list">{props.groceryCartList.length}</div>
+        <Button
+          content={
+            <nav>
+              <Link to="/grocerycart">{props.groceryCartList.length}</Link>
+            </nav>
+          }
+        />
       </div>
       <SearchBar
         setSearchTerm={props.setSearchTerm}

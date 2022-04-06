@@ -17,8 +17,9 @@ const List = (props) => {
   //umut
   const getCocktailNames = async (buttonClicked) => {
     if (!buttonClicked) {
-      const base_url =
-        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
+      const base_url = props.isAlcoholic
+        ? "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
+        : "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
 
       //TO DO then, catch  -> try, catch
       await axios
@@ -45,36 +46,38 @@ const List = (props) => {
   };
 
   const renderList = () => {
-    return drinkList
-      .filter((element) => {
-        if (props.searchTerm === "") {
-          return element;
-        } else if (
-          element.strDrink
-            .toLowerCase()
-            .includes(props.searchTerm.toLowerCase())
-        ) {
-          return element.strDrink;
-        }
-      })
-      .map((element) => (
-        <div className="list-item" key={element.idDrink}>
-          <div className="list-item-thumb-container">
-            <img className="list-item-thumb" src={element.strDrinkThumb} />
-          </div>
+    return props.openGroceryCart
+      ? props.groceryCartList
+      : drinkList
+          .filter((element) => {
+            if (props.searchTerm === "") {
+              return element;
+            } else if (
+              element.strDrink
+                .toLowerCase()
+                .includes(props.searchTerm.toLowerCase())
+            ) {
+              return element.strDrink;
+            }
+          })
+          .map((element) => (
+            <div className="list-item" key={element.idDrink}>
+              <div className="list-item-thumb-container">
+                <img className="list-item-thumb" src={element.strDrinkThumb} />
+              </div>
 
-          <div className="list-item-name">{element.strDrink}</div>
-          <div className="list-button-container">
-            <Button
-              type="icon"
-              iconName="add"
-              onClick={handleAdd}
-              value={element.strDrink}
-            />
-            <Button type="icon" iconName="details" />
-          </div>
-        </div>
-      ));
+              <div className="list-item-name">{element.strDrink}</div>
+              <div className="list-button-container">
+                <Button
+                  type="icon"
+                  iconName="add"
+                  onClick={handleAdd}
+                  value={element.strDrink}
+                />
+                <Button type="icon" iconName="details" />
+              </div>
+            </div>
+          ));
   };
   return <div className="list-container">{renderList()}</div>;
 };
