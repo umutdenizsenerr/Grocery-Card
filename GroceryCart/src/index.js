@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GroceryCart from "./pages/WelcomePage/GroceryCart";
 import List from "./components/List/List";
 //TO DO useEfeect cleanup function
-//redux
+//redux -- rootingde parametre yollanması redux saga
 
 //styled components
 //css dribble

@@ -3,6 +3,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
+import store from "../../redux/store";
+import { Provider } from "react-redux";
+
 const Header = (props) => {
   return (
     <div className="header-container">
@@ -26,11 +29,13 @@ const Header = (props) => {
           }
         />
       </div>
-      <SearchBar
-        setSearchTerm={props.setSearchTerm}
-        setSearchList={props.setSearchList}
-        setSearchButtonClicked={props.setSearchButtonClicked}
-      />
+      <Provider store={store}>
+        <SearchBar
+          setSearchTerm={props.setSearchTerm}
+          setSearchList={props.setSearchList}
+          setSearchButtonClicked={props.setSearchButtonClicked}
+        />
+      </Provider>
       <h3>Umut Market</h3>
     </div>
   );
