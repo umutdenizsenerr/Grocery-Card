@@ -2,6 +2,7 @@ import { SEARCH_TERM } from "./searchBarTypes";
 
 const initialState = {
   searchTerm: "",
+  data: "",
 };
 
 const searchBarReducer = (state = initialState, action) => {

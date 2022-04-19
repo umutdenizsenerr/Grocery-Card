@@ -4,15 +4,17 @@ import { connect } from "react-redux";
 import Button from "../Button/Button";
 import "./SearchBar.css";
 const SearchBar = (props) => {
+  const { searchTermFunction, setSearchTerm, setSearchButtonClicked } = props;
+
   const handleSearch = (event) => {
     event.preventDefault();
-    props.searchTermFunction(event.target.value);
-    props.setSearchTerm(event.target.value);
+    searchTermFunction(event.target.value);
+    setSearchTerm(event.target.value);
   };
   const handleSearchButton = () => {
-    props.setSearchButtonClicked((prev) => prev + 1);
+    setSearchButtonClicked((prev) => prev + 1);
   };
-  console.log(props, "aaa");
+  console.log({ props });
   return (
     <div className="search-bar-button-container">
       <div className="search-bar-container">
@@ -34,16 +36,12 @@ const SearchBar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    searchTerm: state.searchBar,
-  };
-};
+const mapStateToProps = (state) => ({
+  searchTerm: state,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    searchTermFunction: () => dispatch(searchTermFunction()),
-  };
+const mapDispatchToProps = {
+  searchTermFunction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
