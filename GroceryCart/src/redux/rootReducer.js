@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
-import searchBarReducer from "./SearchBar/searchBarReducer";
+import cocktailReducer from "./cocktails/cocktailReducer";
+
 const rootReducer = combineReducers({
-  searchBar: searchBarReducer,
+  //searchBar: searchBarReducer,
+  cocktail: cocktailReducer,
 });
 
 export default rootReducer;

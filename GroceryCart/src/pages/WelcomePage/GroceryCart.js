@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import List from "../../components/List/List";
-
+import store from "../../redux/store";
+import { Provider } from "react-redux";
 const GroceryCart = (props) => {
   const [groceryCartList, setGroceryCartList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [searchButtonClicked, setSearchButtonClicked] = useState(0);
-  useEffect(() => {
-    console.log(groceryCartList);
-  }, [groceryCartList]);
+  useEffect(() => {}, [groceryCartList]);
   return (
     <div>
       <Header
@@ -18,15 +17,17 @@ const GroceryCart = (props) => {
         setSearchList={setSearchList}
         setSearchButtonClicked={setSearchButtonClicked}
       />
-      <List
-        setGroceryCartList={setGroceryCartList}
-        groceryCartList={groceryCartList}
-        searchTerm={searchTerm}
-        searchList={searchList}
-        searchButtonClicked={searchButtonClicked}
-        isAlcoholic={props.isAlcoholic}
-        openGroceryCart={props.openGroceryCart}
-      />
+      <Provider store={store}>
+        <List
+          setGroceryCartList={setGroceryCartList}
+          groceryCartList={groceryCartList}
+          searchTerm={searchTerm}
+          searchList={searchList}
+          searchButtonClicked={searchButtonClicked}
+          isAlcoholic={props.isAlcoholic}
+          openGroceryCart={props.openGroceryCart}
+        />
+      </Provider>
     </div>
   );
 };

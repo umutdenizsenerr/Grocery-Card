@@ -1,84 +1,113 @@
 import { React, useState, useEffect } from "react";
 import Button from "../Button/Button";
-import axios from "axios";
+import {
+  getCocktailRequest,
+  searchCocktailRequest,
+} from "../../redux/cocktails/cocktailAction";
+import { connect } from "react-redux";
 import "./List.css";
-const List = (props) => {
-  const [drinkList, setDrinkList] = useState([]);
+import LoadingSpin from "react-loading-spin";
+
+const List = ({
+  searchButtonClicked,
+  drinks,
+  searchTerm,
+  isAlcoholic,
+  groceryCartList,
+  getCocktailRequestFunc,
+  setGroceryCartList,
+  openGroceryCart,
+  searchCocktailRequestFunc,
+}) => {
+  useEffect(() => {
+    getCocktailNames(false);
+  }, [searchButtonClicked]);
 
   useEffect(() => {
-    getCocktailNames(props.searchButtonClicked);
-  }, [props.searchButtonClicked]);
-  /*  TODO grocerycartın içi
-  const handleRemove = (event) => {
-    let newArr = [...drinkNames];
-    newArr.splice(event.target.value, 1);
-    setDrinkNames(newArr);
-  };*/
-  //umut
-  const getCocktailNames = async (buttonClicked) => {
-    if (!buttonClicked) {
-      const base_url = props.isAlcoholic
-        ? "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
-        : "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
+    console.log("listpropsinuseeffect", drinks);
+  }, [drinks]);
 
-      //TO DO then, catch  -> try, catch
-      await axios
-        .get(base_url)
-        .then((response) => setDrinkList(response.data.drinks))
-        .catch((error) => console.log(error));
-    } else {
-      const url =
-        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
-        document.getElementById("search-box").value.toLowerCase();
-
-      await axios
-        .get(url)
-        .then((response) => setDrinkList(response.data.drinks))
-        .catch((error) => console.log(error));
-    }
+  const getCocktailNames = (isBasePage) => {
+    isBasePage
+      ? getCocktailRequestFunc(searchTerm, true, isAlcoholic)
+      : searchCocktailRequestFunc(searchTerm);
   };
   const handleAdd = (event) => {
     event.preventDefault();
-    props.setGroceryCartList([
-      ...props.groceryCartList,
-      event.currentTarget.value,
-    ]);
+    setGroceryCartList([...groceryCartList, event.currentTarget.value]);
   };
 
   const renderList = () => {
-    return props.openGroceryCart
-      ? props.groceryCartList
-      : drinkList
-          .filter((element) => {
-            if (props.searchTerm === "") {
-              return element;
-            } else if (
-              element.strDrink
-                .toLowerCase()
-                .includes(props.searchTerm.toLowerCase())
-            ) {
-              return element.strDrink;
-            }
-          })
-          .map((element) => (
-            <div className="list-item" key={element.idDrink}>
-              <div className="list-item-thumb-container">
-                <img className="list-item-thumb" src={element.strDrinkThumb} />
-              </div>
+    return openGroceryCart ? (
+      groceryCartList
+    ) : drinks.loading ? (
+      <LoadingSpin />
+    ) : (
+      drinks.data?.map((element) => (
+        <div className="list-item" key={element.idDrink}>
+          <div className="list-item-thumb-container">
+            <img className="list-item-thumb" src={element.strDrinkThumb} />
+          </div>
 
-              <div className="list-item-name">{element.strDrink}</div>
-              <div className="list-button-container">
-                <Button
-                  type="icon"
-                  iconName="add"
-                  onClick={handleAdd}
-                  value={element.strDrink}
-                />
-                <Button type="icon" iconName="details" />
-              </div>
-            </div>
-          ));
+          <div className="list-item-name">{element.strDrink}</div>
+          <div className="list-button-container">
+            <Button
+              type="icon"
+              iconName="add"
+              onClick={handleAdd}
+              value={element.strDrink}
+            />
+            <Button type="icon" iconName="details" />
+          </div>
+        </div>
+      ))
+    );
   };
   return <div className="list-container">{renderList()}</div>;
 };
-export default List;
+const mapStateToProps = (state) => ({
+  searchData: state,
+  drinks: state?.cocktail?.drinks,
+});
+const mapDispatchToProps = {
+  getCocktailRequestFunc: getCocktailRequest,
+  searchCocktailRequestFunc: searchCocktailRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
+
+/*
+
+typescript documentation https://www.typescriptlang.org/docs/
+typescripte dönüştür
+tüm component propsları ve redux variableları
+how to migrate react to ts
+
+her harfe basıldıgında istek atsın settimeout ile
+
+grocery cart içi router ile gözüksün, remove işlemi cartın içinde , add işlemi adet inputu girerek
+
+main sayfada + butonunun yanında ilk başta eklerken default set 1
+
+detail button
+
+css design
+alcoholic içinde sadece homepage değil nonalcoholic de olsun
+homepage - yolda.com homepage gibi
+css breakpoints
+
+documentation
+
+
+
+
+onboarding
+tutorial
+react projesi kurma
+fetch
+routing
+redux
+git
+typescript
+
+*/
