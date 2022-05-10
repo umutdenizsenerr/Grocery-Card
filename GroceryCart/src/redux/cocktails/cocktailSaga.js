@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { getCocktailList, searchCocktailList } from "../../service";
 import {
@@ -6,6 +7,11 @@ import {
   searchCocktailRequestSuccess,
   searchCocktailRequestError,
 } from "./cocktailAction";
+/*interface IGetCocktailRequest {
+  searchItem: string;
+  isBasePage: boolean;
+  isAlcoholic: boolean;
+}*/
 function* getCocktailRequest({ searchItem, isBasePage, isAlcoholic }) {
   try {
     const data = yield call(
@@ -20,7 +26,6 @@ function* getCocktailRequest({ searchItem, isBasePage, isAlcoholic }) {
   }
 }
 function* searchCocktailRequest({ searchItem }) {
-  console.log("searchCocktailRequest");
   try {
     const data = yield call(searchCocktailList, searchItem);
     yield put(searchCocktailRequestSuccess(data));

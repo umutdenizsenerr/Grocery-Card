@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GroceryCart from "./pages/WelcomePage/GroceryCart";
-import List from "./components/List/List";
+
 //TO DO useEfeect cleanup function
 //redux -- rootingde parametre yollanması redux saga
 
@@ -21,14 +21,17 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="alcoholic" element={<GroceryCart isAlcoholic={true} />} />
+        <Route
+          path="alcoholic"
+          element={<GroceryCart openGroceryCart={false} isAlcoholic={true} />}
+        />
         <Route
           path="nonalcoholic"
-          element={<GroceryCart isAlcoholic={false} />}
+          element={<GroceryCart openGroceryCart={false} isAlcoholic={false} />}
         />
         <Route
           path="grocerycart"
-          element={<GroceryCart isAlcoholic={false} />}
+          element={<GroceryCart openGroceryCart={true} isAlcoholic={false} />}
         />
       </Routes>
     </BrowserRouter>

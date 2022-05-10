@@ -1,4 +1,13 @@
-const initialState = {
+interface Idrinks {
+  drinks: {
+    loading: boolean;
+    isSuccess: boolean;
+    data: [];
+    errors: any;
+  };
+}
+
+const initialState: Idrinks = {
   drinks: {
     loading: false,
     isSuccess: false,
@@ -8,7 +17,6 @@ const initialState = {
 };
 
 const cocktailReducer = (state = initialState, action) => {
-  console.log(action.type, "action");
   switch (action.type) {
     case "GET_COCKTAIL_REQUEST":
       return {

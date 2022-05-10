@@ -38,3 +38,11 @@
   align-items: center;
   justify-content: center;
 }
+.list-modal {
+  display: flex;
+  height: 50%;
+  width: 50%;
+
+  align-items: center;
+  justify-content: center;
+}

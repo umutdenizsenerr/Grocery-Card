@@ -1,5 +1,6 @@
 import GroceryCart from "./pages/WelcomePage/GroceryCart";
 import { Link } from "react-router-dom";
+import React from "react";
 const App = () => {
   return (
     <div>

@@ -10,10 +10,14 @@ const SearchBar = (props) => {
     event.preventDefault();
     setSearchTerm(event.target.value);
     setSearchItem(event.target.value);
+    setSearchButtonClicked((prev) => prev + 1);
+
+    return null;
   };
   const handleSearchButton = () => {
     //getCocktailRequest(searchItem, false, false);
     setSearchButtonClicked((prev) => prev + 1);
+    return null;
   };
   return (
     <div className="search-bar-button-container">
