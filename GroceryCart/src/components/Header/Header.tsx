@@ -19,7 +19,7 @@ const Header: FunctionComponent<IHeaderProps> = ({
   setSearchButtonClicked,
 }) => {
   return (
-    <div className="header-container">
+    <div className="app-header">
       <div>
         <ul className="header-links">
           <li>
@@ -68,7 +68,7 @@ const Header: FunctionComponent<IHeaderProps> = ({
         />
       </div>
 
-      <h3>Umut Market</h3>
+      <div className="text-class">Cocktail Bar</div>
     </div>
   );
 };

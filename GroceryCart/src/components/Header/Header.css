@@ -6,6 +6,15 @@
   margin-bottom: 2vh;
   height: 15vh;
 }
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding-left: 5vh;
+  padding-right: 10vh;
+  margin-bottom: 2vh;
+}
 .header-links {
   list-style-type: none;
   margin: 0;
@@ -39,14 +48,14 @@ li a:hover:not(.active) {
   justify-content: center;
 }
 .cart-image {
-  height: 6vh;
+  height: 5vh;
 }
-.length-of-list {
-  border-radius: 50px;
-  background-color: red;
-  width: 3vh;
-  height: 3vh;
+
+.text-class {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: pink;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  font-size: x-large;
 }

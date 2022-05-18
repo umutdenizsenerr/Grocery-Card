@@ -14,6 +14,8 @@ interface IButtonProps {
   onClick?: (event: any) => {};
   value?: any;
   className?: string;
+  onMouseEnter?: (event: any) => {};
+  onMouseLeave?: (event: any) => {};
 }
 interface IconListTypes {
   add: ReactNode;
@@ -28,6 +30,8 @@ const Button: FunctionComponent<IButtonProps> = ({
   type,
   onClick,
   value,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   const iconList: IconListTypes = {
     add: <AiOutlinePlusCircle size={32} />,
@@ -43,7 +47,13 @@ const Button: FunctionComponent<IButtonProps> = ({
     return content;
   };
   return (
-    <button className={iconName + "-button"} onClick={onClick} value={value}>
+    <button
+      className={iconName + "-button"}
+      onClick={onClick}
+      value={value}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {renderContent()}
     </button>
   );

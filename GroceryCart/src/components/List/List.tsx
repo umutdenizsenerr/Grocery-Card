@@ -13,8 +13,8 @@ import {
 import { connect } from "react-redux";
 import "./List.css";
 import LoadingSpin from "react-loading-spin";
-import Modal from "react-modal";
-
+import MyModal from "../Modal/MyModal";
+import Card from "../Card/Card";
 interface IListProps {
   searchButtonClicked: number;
   drinks: any;
@@ -38,7 +38,7 @@ const List: FunctionComponent<IListProps> = ({
   searchCocktailRequestFunc,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  //const [closeModal, setCloseModal] = useState(false);
+  const [ingredients, setIngredients] = useState([]);
 
   const pathname = window.location.pathname;
   useEffect(() => {
@@ -80,10 +80,7 @@ const List: FunctionComponent<IListProps> = ({
     console.log(groceryCartList);
     return null;
   };
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-    return null;
-  };
+
   const handleRemove = (event) => {
     event.preventDefault();
     let index = event.currentTarget.value;
@@ -93,69 +90,91 @@ const List: FunctionComponent<IListProps> = ({
     } else {
       temp.splice(index, 1);
     }
-    console.log(index, temp[index]);
     setGroceryCartList([...temp]);
     return null;
   };
 
   const handleDetails = (event) => {
     event.preventDefault();
+    let splitArray = event.currentTarget.value.split(",");
+    splitArray = splitArray.filter((item) => item);
+    setIngredients([...splitArray]);
     setModalIsOpen(true);
+    console.log(splitArray);
     return null;
   };
+  const generate_random_number = (min, max) => {
+    return Math.floor(Math.random() * max) + min;
+  };
+
   const renderList = () => {
     return openGroceryCart ? (
-      groceryCartList.map((element, index) => (
-        <div className="list-item" key={index}>
-          <div className="list-item-thumb-container">
-            <img className="list-item-thumb" src={element.strDrinkThumb} />
-          </div>
+      <div className="list-container-cart">
+        {groceryCartList.map((element, index) => (
+          <div className="list-item-cart " key={index}>
+            <div className="list-item-thumb-container">
+              <img className="list-item-thumb" src={element.strDrinkThumb} />
+            </div>
 
-          <div className="list-item-name">{element.strDrink}</div>
-          <div>{element.amount}</div>
+            <div className="list-item-name">{element.strDrink}</div>
+            <div className="list-amount-class">{element.amount}</div>
 
-          <div className="list-button-container">
-            <Button
-              type="icon"
-              iconName="remove"
-              onClick={handleRemove}
-              value={index}
-            ></Button>
+            <div className="list-button-container">
+              <Button
+                type="icon"
+                iconName="remove"
+                onClick={handleRemove}
+                value={index}
+              ></Button>
+            </div>
           </div>
-        </div>
-      ))
+        ))}
+      </div>
     ) : drinks.loading ? (
       <LoadingSpin />
     ) : (
       drinks.data?.map((element) => (
-        <div className="list-item" key={element.idDrink}>
-          <div className="list-item-thumb-container">
-            <img className="list-item-thumb" src={element.strDrinkThumb} />
-          </div>
-
-          <div className="list-item-name">{element.strDrink}</div>
-          <div className="list-button-container">
-            <Button
-              type="icon"
-              iconName="add"
-              onClick={handleAdd}
-              value={[element.strDrink, element.strDrinkThumb]}
-            />
-            <Button type="icon" iconName="details" onClick={handleDetails} />
-            <Modal
-              className="list-modal"
-              isOpen={modalIsOpen}
-              onRequestClose={handleCloseModal}
-              contentLabel="Example Modal"
-            >
-              <button onClick={handleCloseModal}>close</button>
-            </Modal>
-          </div>
+        <div className="list-item list-render" key={element.idDrink}>
+          <Card
+            ingredients={[
+              element?.strIngredient1,
+              element?.strIngredient2,
+              element?.strIngredient3,
+              element?.strIngredient4,
+              element?.strIngredient5,
+              element?.strIngredient6,
+              element?.strIngredient7,
+              element?.strIngredient8,
+              element?.strIngredient9,
+              element?.strIngredient10,
+              element?.strIngredient11,
+              element?.strIngredient12,
+              element?.strIngredient13,
+              element?.strIngredient14,
+              element?.strIngredient15,
+            ]}
+            thumb={element.strDrinkThumb}
+            cocktail_name={element.strDrink}
+            recipe={element.strInstructions}
+            handleAdd={handleAdd}
+            handleDetails={handleDetails}
+            serving={generate_random_number(2, 6)}
+            minute={generate_random_number(15, 15)}
+          />
         </div>
       ))
     );
   };
-  return <div className="list-container">{renderList()}</div>;
+  return (
+    <div className="list-container">
+      {modalIsOpen && (
+        <div className="list-modal">
+          <MyModal setOpenModal={setModalIsOpen} ingredients={ingredients} />
+        </div>
+      )}
+      {renderList()}
+    </div>
+  );
 };
 const mapStateToProps = (state) => ({
   searchData: state,
@@ -183,12 +202,11 @@ grocery cart içi router ile gözüksün, remove işlemi cartın içinde , add i
 
 main sayfada + butonunun yanında ilk başta eklerken default set 1
 
-detail button
+detail button ilk apidan ingredients bilgisi gelmiyor
 
 css design
 alcoholic içinde sadece homepage değil nonalcoholic de olsun
 homepage - yolda.com homepage gibi
-css breakpoints
 
 documentation
 
