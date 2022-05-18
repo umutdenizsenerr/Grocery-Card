@@ -19,7 +19,7 @@
 }
 .add-button,
 .details-button {
-  background-color: rgba(255, 253, 112, 0.8);
+  background-color: transparent;
   width: 8vh;
   height: 8vh;
   border-radius: 150px;

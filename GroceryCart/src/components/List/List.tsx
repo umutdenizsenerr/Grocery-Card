@@ -47,7 +47,6 @@ const List: FunctionComponent<IListProps> = ({
 
   useEffect(() => {
     if (searchButtonClicked > 0) {
-      console.log(searchButtonClicked);
       const timer = setTimeout(() => {
         getCocktailNames(false);
       }, 1000);
