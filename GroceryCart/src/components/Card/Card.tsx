@@ -5,8 +5,7 @@ import Button from "../Button/Button";
 const Card = ({
   thumb,
   cocktail_name,
-  ingredients,
-  recipe,
+  id,
   handleAdd,
   handleDetails,
   serving,
@@ -42,7 +41,7 @@ const Card = ({
                 type="icon"
                 iconName="details"
                 onClick={handleDetails}
-                value={[ingredients, recipe]}
+                value={[id]}
               />
             </div>
 

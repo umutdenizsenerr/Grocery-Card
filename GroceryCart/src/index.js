@@ -5,17 +5,6 @@ import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GroceryCart from "./pages/WelcomePage/GroceryCart";
 
-//TO DO useEfeect cleanup function
-//redux -- rootingde parametre yollanması redux saga
-
-//styled components
-//css dribble
-
-//dökümantasyon
-//github co-pilot
-
-//i18
-//typescript
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

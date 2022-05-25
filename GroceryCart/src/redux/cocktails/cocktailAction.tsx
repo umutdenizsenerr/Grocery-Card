@@ -31,3 +31,17 @@ export const searchCocktailRequestError = (error: any) => ({
   type: "SEARCH_COCKTAIL_REQUEST_ERROR",
   error,
 });
+
+export const getCocktailIdRequest = (searchItem: string) => ({
+  type: "GET_COCKTAIL_ID_REQUEST",
+  searchItem,
+});
+export const getCocktailIdRequestSuccess = (data: any) => ({
+  type: "GET_COCKTAIL_ID_REQUEST_SUCCESS",
+  data,
+});
+
+export const getCocktailIdRequestError = (error: any) => ({
+  type: "GET_COCKTAIL_ID_REQUEST_ERROR",
+  error,
+});

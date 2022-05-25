@@ -1,7 +1,8 @@
 import React from "react";
+import LoadingSpin from "react-loading-spin";
 import "./MyModal.css";
 
-function Modal({ setOpenModal, ingredients }) {
+function Modal({ setOpenModal, ingredients, drinks_ingredients }) {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -18,9 +19,13 @@ function Modal({ setOpenModal, ingredients }) {
           <h1>Ingredients</h1>
         </div>
         <div className="body">
-          {ingredients.slice(0, ingredients.length - 1).map((element) => (
-            <div>{element}</div>
-          ))}
+          {!drinks_ingredients?.loading ? (
+            ingredients.map((element, index) => (
+              <div key={index}>{element}</div>
+            ))
+          ) : (
+            <LoadingSpin />
+          )}
         </div>
       </div>
     </div>

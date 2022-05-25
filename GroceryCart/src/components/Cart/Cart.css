@@ -73,22 +73,3 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
-/* 
--> header position absolute
--> modalda ilk api için www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
--> minutes, serving sayıları
--> add, detail button aşağı
--> grocery cart icon, onhover
--> search icon tam yuvarlak değil
--> headerda homepage üstüne gelicen border radius
--> modal customize, icon, detaylar
--> sepetin içinde kaç item olduğu
--> sepetin içine add button
--> sepet içindeki buttonlarda on hoverı küçült
--> redux resuable componentları oku
--> reduxları dynamic hale getir propslardan
--> handleadd, handledetail dışarı taşı
--> componentları sadeleştir pagelere ekle
--> PureFunction, PureComponent
-*/

@@ -19,3 +19,12 @@ export async function searchCocktailList(searchItem: string) {
   const result = await response.json();
   return result;
 }
+
+export async function getCocktailIngredients(searchItem: string) {
+  const url =
+    "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + searchItem;
+
+  const response = await fetch(url);
+  const result = await response.json();
+  return result;
+}

@@ -49,3 +49,59 @@ img {
 ul {
   list-style-type: square;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 185vh;
+  height: 10vh;
+  background-color: #333;
+}
+.app-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.app-image {
+  height: 93.5vh;
+}
+.text-class {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+}
+.header-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
+}

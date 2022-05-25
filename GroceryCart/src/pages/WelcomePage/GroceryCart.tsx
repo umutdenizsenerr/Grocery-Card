@@ -4,6 +4,8 @@ import List from "../../components/List/List";
 import store from "../../redux/store";
 import { Provider } from "react-redux";
 import { FunctionComponent } from "react";
+import DrinkPage from "../DrinkPage/DrinkPage";
+import CartPage from "../CartPage/CartPage";
 
 interface IGroceryCartProps {
   isAlcoholic?: boolean;
@@ -26,16 +28,23 @@ const GroceryCart: FunctionComponent<IGroceryCartProps> = ({
         setSearchList={setSearchList}
         setSearchButtonClicked={setSearchButtonClicked}
       />
-      <Provider store={store}>
-        <List
-          setGroceryCartList={setGroceryCartList}
+      {!openGroceryCart ? (
+        <Provider store={store}>
+          <DrinkPage
+            setGroceryCartList={setGroceryCartList}
+            groceryCartList={groceryCartList}
+            searchTerm={searchTerm}
+            searchButtonClicked={searchButtonClicked}
+            isAlcoholic={isAlcoholic}
+            openGroceryCart={openGroceryCart}
+          />
+        </Provider>
+      ) : (
+        <CartPage
           groceryCartList={groceryCartList}
-          searchTerm={searchTerm}
-          searchButtonClicked={searchButtonClicked}
-          isAlcoholic={isAlcoholic}
-          openGroceryCart={openGroceryCart}
+          setGroceryCartList={setGroceryCartList}
         />
-      </Provider>
+      )}
     </div>
   );
 };

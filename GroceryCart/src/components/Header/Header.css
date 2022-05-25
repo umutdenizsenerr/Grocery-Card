@@ -14,6 +14,7 @@
   padding-left: 5vh;
   padding-right: 10vh;
   margin-bottom: 2vh;
+  position: fixed;
 }
 .header-links {
   list-style-type: none;
