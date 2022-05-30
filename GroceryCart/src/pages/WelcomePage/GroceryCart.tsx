@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import List from "../../components/List/List";
 import store from "../../redux/store";
 import { Provider } from "react-redux";
 import { FunctionComponent } from "react";
@@ -17,7 +16,6 @@ const GroceryCart: FunctionComponent<IGroceryCartProps> = ({
 }) => {
   const [groceryCartList, setGroceryCartList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchList, setSearchList] = useState([]);
   const [searchButtonClicked, setSearchButtonClicked] = useState(0);
   useEffect(() => {}, [groceryCartList]);
   return (
@@ -25,7 +23,6 @@ const GroceryCart: FunctionComponent<IGroceryCartProps> = ({
       <Header
         groceryCartList={groceryCartList}
         setSearchTerm={setSearchTerm}
-        setSearchList={setSearchList}
         setSearchButtonClicked={setSearchButtonClicked}
       />
       {!openGroceryCart ? (
@@ -36,7 +33,6 @@ const GroceryCart: FunctionComponent<IGroceryCartProps> = ({
             searchTerm={searchTerm}
             searchButtonClicked={searchButtonClicked}
             isAlcoholic={isAlcoholic}
-            openGroceryCart={openGroceryCart}
           />
         </Provider>
       ) : (

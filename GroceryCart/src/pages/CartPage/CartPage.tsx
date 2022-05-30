@@ -1,12 +1,12 @@
 import React, { Dispatch, FunctionComponent, SetStateAction } from "react";
 
 import "../../components/List/List.css";
-import Cart from "../../components/Cart/Cart";
-interface IListProps {
+import List from "../../components/List/List";
+interface ICartPageProps {
   groceryCartList: any;
   setGroceryCartList: Dispatch<SetStateAction<any[]>>;
 }
-const CartPage: FunctionComponent<IListProps> = ({
+const CartPage: FunctionComponent<ICartPageProps> = ({
   groceryCartList,
   setGroceryCartList,
 }) => {
@@ -25,7 +25,7 @@ const CartPage: FunctionComponent<IListProps> = ({
 
   return (
     <div className="list-container">
-      <Cart groceryCartList={groceryCartList} handleRemove={handleRemove} />
+      <List data={groceryCartList} handleRemove={handleRemove} />
     </div>
   );
 };

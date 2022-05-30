@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import "../../components/List/List.css";
 import MyModal from "../../components/Modal/MyModal";
 import List from "../../components/List/List";
-interface IListProps {
+interface IDrinkPageProps {
   searchButtonClicked: number;
   drinks: any;
   drinks_ingredients: any;
@@ -23,12 +23,10 @@ interface IListProps {
   groceryCartList: any;
   getCocktailRequestFunc: (string, boolean, arg2: boolean) => {};
   getCocktailIdRequestFunc: (string) => {};
-
   setGroceryCartList: Dispatch<SetStateAction<any[]>>;
-  openGroceryCart: boolean;
   searchCocktailRequestFunc: (string) => {};
 }
-const DrinkPage: FunctionComponent<IListProps> = ({
+const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
   searchButtonClicked,
   drinks_ingredients,
   drinks,
@@ -37,7 +35,6 @@ const DrinkPage: FunctionComponent<IListProps> = ({
   groceryCartList,
   getCocktailRequestFunc,
   setGroceryCartList,
-  openGroceryCart,
   searchCocktailRequestFunc,
   getCocktailIdRequestFunc,
 }) => {
@@ -105,20 +102,17 @@ const DrinkPage: FunctionComponent<IListProps> = ({
         <div className="list-modal">
           <MyModal
             setOpenModal={setModalIsOpen}
-            ingredients={ingredients}
-            drinks_ingredients={drinks_ingredients}
+            data={{
+              ingredients: ingredients,
+              drinks_ingredients: drinks_ingredients,
+            }}
           />
         </div>
       )}
       <List
-        groceryCartList={groceryCartList}
-        searchTerm={searchTerm}
-        searchButtonClicked={searchButtonClicked}
-        isAlcoholic={isAlcoholic}
-        openGroceryCart={openGroceryCart}
         handleAdd={handleAdd}
         handleDetails={handleDetails}
-        drinks={drinks}
+        data={{ drinks: drinks }}
       />
     </div>
   );

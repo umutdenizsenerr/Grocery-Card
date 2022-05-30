@@ -1,24 +1,15 @@
-import React, { useState } from "react";
-import { getCocktailRequest } from "../../redux/cocktails/cocktailAction";
-import { connect } from "react-redux";
+import React, { FunctionComponent } from "react";
 import Button from "../Button/Button";
 import "./SearchBar.css";
-const SearchBar = (props) => {
-  const { setSearchTerm, setSearchButtonClicked } = props;
-  const [searchItem, setSearchItem] = useState("");
-  const handleSearch = (event) => {
-    event.preventDefault();
-    setSearchTerm(event.target.value);
-    setSearchItem(event.target.value);
-    setSearchButtonClicked((prev) => prev + 1);
 
-    return null;
-  };
-  const handleSearchButton = () => {
-    //getCocktailRequest(searchItem, false, false);
-    setSearchButtonClicked((prev) => prev + 1);
-    return null;
-  };
+interface ISearchBarProps {
+  handleSearch: (event: any) => any;
+  handleSearchButton: (event: any) => any;
+}
+const SearchBar: FunctionComponent<ISearchBarProps> = ({
+  handleSearch,
+  handleSearchButton,
+}) => {
   return (
     <div className="search-bar-button-container">
       <div className="search-bar-container">
@@ -40,12 +31,4 @@ const SearchBar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  //drinks: state,
-});
-
-const mapDispatchToProps = {
-  getCocktailRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default SearchBar;

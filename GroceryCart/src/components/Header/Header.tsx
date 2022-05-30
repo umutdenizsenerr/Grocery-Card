@@ -5,17 +5,15 @@ import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import store from "../../redux/store";
 import { Provider } from "react-redux";
+import SearchBarPage from "../../pages/SearchBarPage/SearchBarPage";
 
 interface IHeaderProps {
   groceryCartList: any[];
   setSearchTerm: Dispatch<SetStateAction<string>>;
-  setSearchList: Dispatch<SetStateAction<any[]>>;
   setSearchButtonClicked: Dispatch<SetStateAction<number>>;
 }
 const Header: FunctionComponent<IHeaderProps> = ({
-  groceryCartList,
   setSearchTerm,
-  setSearchList,
   setSearchButtonClicked,
 }) => {
   return (
@@ -43,9 +41,8 @@ const Header: FunctionComponent<IHeaderProps> = ({
         </ul>
       </div>
       <Provider store={store}>
-        <SearchBar
+        <SearchBarPage
           setSearchTerm={setSearchTerm}
-          setSearchList={setSearchList}
           setSearchButtonClicked={setSearchButtonClicked}
         />
       </Provider>

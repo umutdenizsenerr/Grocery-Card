@@ -1,38 +1,41 @@
 import React, { FunctionComponent, useState } from "react";
-import Button from "../Button/Button";
 
 import "./List.css";
 import LoadingSpin from "react-loading-spin";
 import Card from "../Card/Card";
 interface IListProps {
-  searchButtonClicked: number;
-  drinks: any;
-  searchTerm: string;
-  isAlcoholic: boolean;
-  groceryCartList: any;
-  openGroceryCart: boolean;
-  handleAdd: (event: any) => any;
-  handleDetails: (event: any) => any;
+  data?: any;
+
+  handleAdd?: (event: any) => any;
+  handleDetails?: (event: any) => any;
+  handleRemove?: (event: any) => any;
 }
 const List: FunctionComponent<IListProps> = ({
-  drinks,
+  data,
   handleAdd,
   handleDetails,
+  handleRemove,
 }) => {
   const renderList = () => {
-    return drinks.loading ? (
+    return data?.loading ? (
       <LoadingSpin />
     ) : (
-      drinks.data?.map((element) => (
-        <div className="list-item list-render" key={element.idDrink}>
+      data.drinks.data?.map((element, index) => (
+        <div className="list-item list-render" key={element?.idDrink}>
           <Card
             id={element?.idDrink}
             thumb={element.strDrinkThumb}
-            cocktail_name={element.strDrink}
             handleAdd={handleAdd}
             handleDetails={handleDetails}
-            serving={(element.idDrink % 10) + 1}
-            minute={((element.idDrink * 4) % 10) + 1}
+            handleRemove={handleRemove}
+            data={{
+              serving: (element.idDrink % 10) + 1,
+              minute: ((element.idDrink * 4) % 10) + 1,
+              index: index,
+              element: element,
+              cocktail_name: element.strDrink,
+            }}
+            type="showCase"
           />
         </div>
       ))

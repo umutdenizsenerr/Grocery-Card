@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Dispatch, FunctionComponent, SetStateAction } from "react";
 import LoadingSpin from "react-loading-spin";
 import "./MyModal.css";
-
-function Modal({ setOpenModal, ingredients, drinks_ingredients }) {
+interface IModalProps {
+  data: any;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+}
+const Modal: FunctionComponent<IModalProps> = ({ setOpenModal, data }) => {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -19,8 +22,8 @@ function Modal({ setOpenModal, ingredients, drinks_ingredients }) {
           <h1>Ingredients</h1>
         </div>
         <div className="body">
-          {!drinks_ingredients?.loading ? (
-            ingredients.map((element, index) => (
+          {!data.drinks_ingredients?.loading ? (
+            data.ingredients.map((element, index) => (
               <div key={index}>{element}</div>
             ))
           ) : (
@@ -30,6 +33,6 @@ function Modal({ setOpenModal, ingredients, drinks_ingredients }) {
       </div>
     </div>
   );
-}
+};
 
 export default Modal;
