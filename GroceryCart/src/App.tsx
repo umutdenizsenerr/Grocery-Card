@@ -1,33 +1,41 @@
-import "./App.css";
-import { Link } from "react-router-dom";
-import React from "react";
-const App = () => {
+import React, { FunctionComponent, useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import Header from "./components/Header/Header";
+import CartPage from "./pages/CartPage/CartPage";
+import DrinkPage from "./pages/DrinkPage/DrinkPage";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
+import store from "./redux/store";
+interface IAppProps {
+  isAlcoholic?: boolean;
+  openGroceryCart?: boolean;
+  isWelcomePage?: boolean;
+}
+const App: FunctionComponent<IAppProps> = ({
+  isAlcoholic,
+  openGroceryCart,
+  isWelcomePage,
+}) => {
+  const [groceryCartList, setGroceryCartList] = useState([]);
+  useEffect(() => {}, [groceryCartList]);
   return (
-    <div className="app-container">
-      <div className="app-header">
-        <div>
-          <nav>
-            <ul className="header-links">
-              <li>
-                <Link to="/">Home Page</Link>
-              </li>
-              <li>
-                <Link to="/alcoholic">Alcoholic</Link>
-              </li>
-              <li>
-                <Link to="/nonalcoholic">NonAlcoholic</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="text-class">Cocktail Bar</div>
-      </div>
-      <div className="app-image-container">
-        <img
-          className="app-image"
-          src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/05/22/13/gin-cocktails.jpg?width=1200"
+    <div>
+      <Header />
+      {isWelcomePage ? (
+        <WelcomePage />
+      ) : !openGroceryCart ? (
+        <Provider store={store}>
+          <DrinkPage
+            setGroceryCartList={setGroceryCartList}
+            groceryCartList={groceryCartList}
+            isAlcoholic={isAlcoholic}
+          />
+        </Provider>
+      ) : (
+        <CartPage
+          groceryCartList={groceryCartList}
+          setGroceryCartList={setGroceryCartList}
         />
-      </div>
+      )}
     </div>
   );
 };

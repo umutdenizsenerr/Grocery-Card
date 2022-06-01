@@ -15,7 +15,7 @@ const Cart: FunctionComponent<ICartProps> = ({
   return (
     <div className="list-item-cart " key={index}>
       <div className="list-item-thumb-container">
-        <img className="list-item-thumb" src={element.strDrinkThumb} />
+        <img className="list-item-thumb" src={element.strDrinkThumb} alt="" />
       </div>
       <div className="list-item-name">{element.strDrink}</div>
       <div className="list-amount-class">{element.amount}</div>

@@ -3,27 +3,46 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GroceryCart from "./pages/WelcomePage/GroceryCart";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<App isWelcomePage={true} />} />
         <Route
           path="alcoholic"
-          element={<GroceryCart openGroceryCart={false} isAlcoholic={true} />}
+          element={
+            <App
+              openGroceryCart={false}
+              isAlcoholic={true}
+              isWelcomePage={false}
+            />
+          }
         />
         <Route
           path="nonalcoholic"
-          element={<GroceryCart openGroceryCart={false} isAlcoholic={false} />}
+          element={
+            <App
+              openGroceryCart={false}
+              isAlcoholic={false}
+              isWelcomePage={false}
+            />
+          }
         />
         <Route
           path="grocerycart"
-          element={<GroceryCart openGroceryCart={true} isAlcoholic={false} />}
+          element={
+            <App
+              openGroceryCart={true}
+              isAlcoholic={false}
+              isWelcomePage={false}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+// app.tsx düzenle

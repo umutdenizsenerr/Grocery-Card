@@ -1,11 +1,17 @@
 import React, { Dispatch, FunctionComponent, SetStateAction } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import LoadingSpin from "react-loading-spin";
 import "./MyModal.css";
 interface IModalProps {
+  title: string;
   data: any;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
-const Modal: FunctionComponent<IModalProps> = ({ setOpenModal, data }) => {
+const MyModal: FunctionComponent<IModalProps> = ({
+  setOpenModal,
+  data,
+  title,
+}) => {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -15,11 +21,11 @@ const Modal: FunctionComponent<IModalProps> = ({ setOpenModal, data }) => {
               setOpenModal(false);
             }}
           >
-            X
+            <AiOutlineCloseCircle />
           </button>
         </div>
         <div className="title">
-          <h1>Ingredients</h1>
+          <h1>{title}</h1>
         </div>
         <div className="body">
           {!data.drinks_ingredients?.loading ? (
@@ -35,4 +41,4 @@ const Modal: FunctionComponent<IModalProps> = ({ setOpenModal, data }) => {
   );
 };
 
-export default Modal;
+export default MyModal;

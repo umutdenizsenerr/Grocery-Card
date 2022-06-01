@@ -1,4 +1,4 @@
-export async function getCocktailList(searchItem, isBasePage, isAlcoholic) {
+export async function getCocktailList(isAlcoholic) {
   let url = "";
 
   isAlcoholic

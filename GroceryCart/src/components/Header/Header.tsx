@@ -1,21 +1,14 @@
-import React, { Dispatch, FunctionComponent, SetStateAction } from "react";
+import React, { FunctionComponent } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "../Button/Button";
 import store from "../../redux/store";
 import { Provider } from "react-redux";
-import SearchBarPage from "../../pages/SearchBarPage/SearchBarPage";
 
-interface IHeaderProps {
-  groceryCartList: any[];
-  setSearchTerm: Dispatch<SetStateAction<string>>;
-  setSearchButtonClicked: Dispatch<SetStateAction<number>>;
-}
-const Header: FunctionComponent<IHeaderProps> = ({
-  setSearchTerm,
-  setSearchButtonClicked,
-}) => {
+interface IHeaderProps {}
+const Header: FunctionComponent<IHeaderProps> = () => {
+  const location = useLocation();
   return (
     <div className="app-header">
       <div>
@@ -40,30 +33,31 @@ const Header: FunctionComponent<IHeaderProps> = ({
           </li>
         </ul>
       </div>
-      <Provider store={store}>
-        <SearchBarPage
-          setSearchTerm={setSearchTerm}
-          setSearchButtonClicked={setSearchButtonClicked}
-        />
-      </Provider>
-      <div className="cart-image-container">
-        <Button
-          iconName="image"
-          content={
-            <nav>
-              <Link to="/grocerycart">
-                {
-                  <img
-                    className="cart-image"
-                    src="https://cdn.pixabay.com/photo/2013/07/12/14/53/cart-148964_960_720.png"
-                    alt=""
-                  />
-                }
-              </Link>
-            </nav>
-          }
-        />
-      </div>
+      {!(location.pathname === "/") ? (
+        <div className="middle-container">
+          <Provider store={store}>
+            <SearchBar action="search_cocktail" />
+          </Provider>
+          <div className="cart-image-container">
+            <Button
+              iconName="image"
+              content={
+                <nav>
+                  <Link to="/grocerycart">
+                    {
+                      <img
+                        className="cart-image"
+                        src="https://cdn.pixabay.com/photo/2013/07/12/14/53/cart-148964_960_720.png"
+                        alt=""
+                      />
+                    }
+                  </Link>
+                </nav>
+              }
+            />
+          </div>
+        </div>
+      ) : null}
 
       <div className="text-class">Cocktail Bar</div>
     </div>
@@ -71,3 +65,6 @@ const Header: FunctionComponent<IHeaderProps> = ({
 };
 
 export default Header;
+
+//react routerdan path name alıp headerı ona göre ayarla
+//app.js router olayını ayarla

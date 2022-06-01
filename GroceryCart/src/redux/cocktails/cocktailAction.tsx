@@ -1,11 +1,5 @@
-export const getCocktailRequest = (
-  searchItem: string,
-  isBasePage: boolean,
-  isAlcoholic: boolean
-) => ({
+export const getCocktailRequest = (isAlcoholic: boolean) => ({
   type: "GET_COCKTAIL_REQUEST",
-  searchItem,
-  isBasePage,
   isAlcoholic,
 });
 export const getCocktailRequestSuccess = (data: any) => ({

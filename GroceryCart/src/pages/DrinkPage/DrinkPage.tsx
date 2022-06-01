@@ -7,58 +7,38 @@ import React, {
 } from "react";
 import {
   getCocktailRequest,
-  searchCocktailRequest,
   getCocktailIdRequest,
 } from "../../redux/cocktails/cocktailAction";
 import { connect } from "react-redux";
 import "../../components/List/List.css";
-import MyModal from "../../components/Modal/MyModal";
+import MyModal from "../../components/MyModal/MyModal";
 import List from "../../components/List/List";
 interface IDrinkPageProps {
-  searchButtonClicked: number;
   drinks: any;
   drinks_ingredients: any;
-  searchTerm: string;
   isAlcoholic: boolean;
   groceryCartList: any;
-  getCocktailRequestFunc: (string, boolean, arg2: boolean) => {};
+  getCocktailRequestFunc: (boolean) => {};
   getCocktailIdRequestFunc: (string) => {};
   setGroceryCartList: Dispatch<SetStateAction<any[]>>;
-  searchCocktailRequestFunc: (string) => {};
 }
 const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
-  searchButtonClicked,
   drinks_ingredients,
   drinks,
-  searchTerm,
   isAlcoholic,
   groceryCartList,
   getCocktailRequestFunc,
   setGroceryCartList,
-  searchCocktailRequestFunc,
   getCocktailIdRequestFunc,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const pathname = window.location.pathname;
+
   useEffect(() => {
-    getCocktailNames(true);
+    getCocktailRequestFunc(isAlcoholic);
+    console.log(isAlcoholic, pathname, drinks.data);
   }, [pathname]);
-
-  useEffect(() => {
-    if (searchButtonClicked > 0) {
-      const timer = setTimeout(() => {
-        getCocktailNames(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [searchButtonClicked]);
-
-  const getCocktailNames = (isBasePage) => {
-    isBasePage
-      ? getCocktailRequestFunc(searchTerm, true, isAlcoholic)
-      : searchCocktailRequestFunc(searchTerm);
-  };
 
   const handleAdd = (event) => {
     event.preventDefault();
@@ -101,6 +81,7 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
       {modalIsOpen && (
         <div className="list-modal">
           <MyModal
+            title="Ingredients"
             setOpenModal={setModalIsOpen}
             data={{
               ingredients: ingredients,
@@ -112,19 +93,19 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
       <List
         handleAdd={handleAdd}
         handleDetails={handleDetails}
-        data={{ drinks: drinks }}
+        data={drinks.data}
+        isLoading={drinks.loading}
+        cardType="showCase"
       />
     </div>
   );
 };
 const mapStateToProps = (state) => ({
-  searchData: state,
   drinks: state?.cocktail?.drinks,
   drinks_ingredients: state?.cocktail?.drinks_ingredients,
 });
 const mapDispatchToProps = {
   getCocktailRequestFunc: getCocktailRequest,
-  searchCocktailRequestFunc: searchCocktailRequest,
   getCocktailIdRequestFunc: getCocktailIdRequest,
 };
 
