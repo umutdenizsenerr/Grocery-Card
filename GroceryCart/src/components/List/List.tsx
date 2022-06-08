@@ -1,8 +1,27 @@
 import React, { FunctionComponent } from "react";
-
-import "./List.css";
+import styled from "styled-components";
+//import "./List.css";
 import LoadingSpin from "react-loading-spin";
 import Card from "../Card/Card";
+
+const ListItem = styled.div`
+  display: flex;
+  padding: 2vh;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20vh;
+  margin-left: 5vh;
+  z-index: 0;
+`;
+
+const ListContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
 interface IListProps {
   data?: any;
   handleAdd?: (event: any) => any;
@@ -20,8 +39,8 @@ const List: FunctionComponent<IListProps> = ({
   cardType,
 }) => {
   const renderList = () => {
-    return data.map((element, index) => (
-      <div className="list-item list-render" key={element?.idDrink}>
+    return data?.map((element, index) => (
+      <ListItem key={element?.idDrink}>
         <Card
           id={element?.idDrink}
           thumb={element.strDrinkThumb}
@@ -37,11 +56,11 @@ const List: FunctionComponent<IListProps> = ({
           }}
           type={cardType}
         />
-      </div>
+      </ListItem>
     ));
   };
   return (
-    <div className="list-container">
+    <ListContainer>
       {cardType === "showCase" ? (
         isLoading ? (
           <LoadingSpin />
@@ -51,7 +70,7 @@ const List: FunctionComponent<IListProps> = ({
       ) : (
         renderList()
       )}
-    </div>
+    </ListContainer>
   );
 };
 

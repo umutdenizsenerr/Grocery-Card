@@ -15,7 +15,7 @@ import MyModal from "../../components/MyModal/MyModal";
 import List from "../../components/List/List";
 interface IDrinkPageProps {
   drinks: any;
-  drinks_ingredients: any;
+  drinksIngredients: any;
   isAlcoholic: boolean;
   groceryCartList: any;
   getCocktailRequestFunc: (boolean) => {};
@@ -23,7 +23,7 @@ interface IDrinkPageProps {
   setGroceryCartList: Dispatch<SetStateAction<any[]>>;
 }
 const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
-  drinks_ingredients,
+  drinksIngredients,
   drinks,
   isAlcoholic,
   groceryCartList,
@@ -34,11 +34,6 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const pathname = window.location.pathname;
-
-  useEffect(() => {
-    getCocktailRequestFunc(isAlcoholic);
-    console.log(isAlcoholic, pathname, drinks.data);
-  }, [pathname]);
 
   const handleAdd = (event) => {
     event.preventDefault();
@@ -58,16 +53,6 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
     }
     return null;
   };
-  useEffect(() => {
-    if (drinks_ingredients.loading === false) {
-      let temp = [];
-      for (let i = 1; i < 16; i++) {
-        let ingredient_name = "strIngredient" + i;
-        temp.push(drinks_ingredients?.data?.[0]?.[ingredient_name]);
-      }
-      setIngredients([...temp]);
-    }
-  }, [drinks_ingredients.loading]);
 
   const handleDetails = (event) => {
     event.preventDefault();
@@ -76,6 +61,21 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
     return null;
   };
 
+  useEffect(() => {
+    if (drinksIngredients.loading === false) {
+      let temp = [];
+      for (let i = 1; i < 16; i++) {
+        let ingredient_name = "strIngredient" + i;
+        temp.push(drinksIngredients?.data?.[0]?.[ingredient_name]);
+      }
+      setIngredients([...temp]);
+    }
+  }, [drinksIngredients.loading]);
+
+  useEffect(() => {
+    getCocktailRequestFunc(isAlcoholic);
+  }, [pathname]);
+
   return (
     <div className="list-container">
       {modalIsOpen && (
@@ -83,10 +83,8 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
           <MyModal
             title="Ingredients"
             setOpenModal={setModalIsOpen}
-            data={{
-              ingredients: ingredients,
-              drinks_ingredients: drinks_ingredients,
-            }}
+            data={ingredients}
+            isLoading={drinksIngredients.loading}
           />
         </div>
       )}
@@ -102,7 +100,7 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
 };
 const mapStateToProps = (state) => ({
   drinks: state?.cocktail?.drinks,
-  drinks_ingredients: state?.cocktail?.drinks_ingredients,
+  drinksIngredients: state?.cocktail?.drinksIngredients,
 });
 const mapDispatchToProps = {
   getCocktailRequestFunc: getCocktailRequest,

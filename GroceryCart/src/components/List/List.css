@@ -43,6 +43,7 @@
   justify-content: center;
   margin-top: 20vh;
   margin-left: 5vh;
+  z-index: 0;
 }
 
 .list-container {

@@ -5,37 +5,52 @@ import CartPage from "./pages/CartPage/CartPage";
 import DrinkPage from "./pages/DrinkPage/DrinkPage";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import store from "./redux/store";
-interface IAppProps {
-  isAlcoholic?: boolean;
-  openGroceryCart?: boolean;
-  isWelcomePage?: boolean;
-}
-const App: FunctionComponent<IAppProps> = ({
-  isAlcoholic,
-  openGroceryCart,
-  isWelcomePage,
-}) => {
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+const App = () => {
   const [groceryCartList, setGroceryCartList] = useState([]);
   useEffect(() => {}, [groceryCartList]);
   return (
     <div>
-      <Header />
-      {isWelcomePage ? (
-        <WelcomePage />
-      ) : !openGroceryCart ? (
-        <Provider store={store}>
-          <DrinkPage
-            setGroceryCartList={setGroceryCartList}
-            groceryCartList={groceryCartList}
-            isAlcoholic={isAlcoholic}
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route
+            path="/alcoholic"
+            element={
+              <Provider store={store}>
+                <DrinkPage
+                  setGroceryCartList={setGroceryCartList}
+                  groceryCartList={groceryCartList}
+                  isAlcoholic={true}
+                />
+              </Provider>
+            }
           />
-        </Provider>
-      ) : (
-        <CartPage
-          groceryCartList={groceryCartList}
-          setGroceryCartList={setGroceryCartList}
-        />
-      )}
+          <Route
+            path="/nonalcoholic"
+            element={
+              <Provider store={store}>
+                <DrinkPage
+                  setGroceryCartList={setGroceryCartList}
+                  groceryCartList={groceryCartList}
+                  isAlcoholic={false}
+                />
+              </Provider>
+            }
+          />
+          <Route
+            path="/grocerycart"
+            element={
+              <CartPage
+                groceryCartList={groceryCartList}
+                setGroceryCartList={setGroceryCartList}
+              />
+            }
+          />
+        </Routes>
+      </Router>
     </div>
   );
 };

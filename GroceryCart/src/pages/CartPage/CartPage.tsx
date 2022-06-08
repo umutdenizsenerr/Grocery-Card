@@ -23,12 +23,21 @@ const CartPage: FunctionComponent<ICartPageProps> = ({
     return null;
   };
 
+  const handleAdd = (event) => {
+    event.preventDefault();
+    let index = event.currentTarget.value;
+    let temp = [...groceryCartList];
+    temp[index].amount += 1;
+    setGroceryCartList([...temp]);
+    return null;
+  };
   return (
     <div className="list-container">
       <List
         data={groceryCartList}
         handleRemove={handleRemove}
         cardType="cartCase"
+        handleAdd={handleAdd}
       />
     </div>
   );

@@ -1,18 +1,24 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 import Button from "../Button/Button";
 import store from "../../redux/store";
 import { Provider } from "react-redux";
+import {
+  CartImageContainer,
+  HeaderContainer,
+  HeaderLinks,
+  HeaderText,
+  MiddleContainer,
+} from "./Header.style";
 
-interface IHeaderProps {}
-const Header: FunctionComponent<IHeaderProps> = () => {
+const Header = () => {
   const location = useLocation();
   return (
-    <div className="app-header">
+    <HeaderContainer isBigger={true}>
       <div>
-        <ul className="header-links">
+        <HeaderLinks>
           <li>
             <Link to="/">Home Page</Link>
             <link
@@ -31,40 +37,22 @@ const Header: FunctionComponent<IHeaderProps> = () => {
               <Link to="/nonalcoholic">NonAlcoholic</Link>
             </nav>
           </li>
-        </ul>
+        </HeaderLinks>
       </div>
       {!(location.pathname === "/") ? (
-        <div className="middle-container">
+        <MiddleContainer>
           <Provider store={store}>
             <SearchBar action="search_cocktail" />
           </Provider>
-          <div className="cart-image-container">
-            <Button
-              iconName="image"
-              content={
-                <nav>
-                  <Link to="/grocerycart">
-                    {
-                      <img
-                        className="cart-image"
-                        src="https://cdn.pixabay.com/photo/2013/07/12/14/53/cart-148964_960_720.png"
-                        alt=""
-                      />
-                    }
-                  </Link>
-                </nav>
-              }
-            />
-          </div>
-        </div>
+          <CartImageContainer>
+            <Button iconName="cart" type="icon" />
+          </CartImageContainer>
+        </MiddleContainer>
       ) : null}
 
-      <div className="text-class">Cocktail Bar</div>
-    </div>
+      <HeaderText>Cocktail Bar</HeaderText>
+    </HeaderContainer>
   );
 };
 
 export default Header;
-
-//react routerdan path name alıp headerı ona göre ayarla
-//app.js router olayını ayarla

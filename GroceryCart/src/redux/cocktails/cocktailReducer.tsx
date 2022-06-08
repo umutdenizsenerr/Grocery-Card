@@ -5,7 +5,7 @@ interface Idrinks {
     data: [];
     errors: any;
   };
-  drinks_ingredients: {
+  drinksIngredients: {
     loading: boolean;
     isSuccess: boolean;
     data: [];
@@ -20,7 +20,7 @@ const initialState: Idrinks = {
     data: [],
     errors: undefined,
   },
-  drinks_ingredients: {
+  drinksIngredients: {
     loading: false,
     isSuccess: false,
     data: [],
@@ -90,7 +90,7 @@ const cocktailReducer = (state = initialState, action) => {
     case "GET_COCKTAIL_ID_REQUEST":
       return {
         ...state,
-        drinks_ingredients: {
+        drinksIngredients: {
           ...state.drinks,
           loading: true,
         },
@@ -99,7 +99,7 @@ const cocktailReducer = (state = initialState, action) => {
     case "GET_COCKTAIL_ID_REQUEST_SUCCESS":
       return {
         ...state,
-        drinks_ingredients: {
+        drinksIngredients: {
           ...state.drinks,
           loading: false,
           data: action.data.drinks,
@@ -110,7 +110,7 @@ const cocktailReducer = (state = initialState, action) => {
     case "GET_COCKTAIL_ID_REQUEST_ERROR":
       return {
         ...state,
-        drinks_ingredients: {
+        drinksIngredients: {
           ...state.drinks,
           loading: false,
           isSuccess: false,
