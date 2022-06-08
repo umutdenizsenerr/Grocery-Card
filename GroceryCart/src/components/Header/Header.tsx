@@ -9,7 +9,8 @@ import {
   CartImageContainer,
   HeaderContainer,
   HeaderLinks,
-  HeaderText,
+  Logo,
+  LogoContainer,
   MiddleContainer,
 } from "./Header.style";
 
@@ -17,40 +18,33 @@ const Header = () => {
   const location = useLocation();
   return (
     <HeaderContainer isBigger={true}>
-      <div>
+      <LogoContainer>
+        <Logo>Cocktail Bar</Logo>
         <HeaderLinks>
           <li>
             <Link to="/">Home Page</Link>
-            <link
-              href="https://fonts.googleapis.com/css?family=Lobster"
-              rel="stylesheet"
-              type="text/css"
-            />
           </li>
           <li>
-            <nav>
-              <Link to="/alcoholic">Alcoholic</Link>
-            </nav>
+            <Link to="/alcoholic">Alcoholic</Link>
           </li>
           <li>
-            <nav>
-              <Link to="/nonalcoholic">NonAlcoholic</Link>
-            </nav>
+            <Link to="/nonalcoholic">Non-alcoholic</Link>
           </li>
         </HeaderLinks>
-      </div>
+      </LogoContainer>
+
       {!(location.pathname === "/") ? (
         <MiddleContainer>
           <Provider store={store}>
             <SearchBar action="search_cocktail" />
           </Provider>
-          <CartImageContainer>
+          {/* <CartImageContainer>
             <Button iconName="cart" type="icon" />
-          </CartImageContainer>
+          </CartImageContainer> */}
         </MiddleContainer>
-      ) : null}
-
-      <HeaderText>Cocktail Bar</HeaderText>
+      ) : (
+        <div />
+      )}
     </HeaderContainer>
   );
 };

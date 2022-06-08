@@ -45,12 +45,9 @@ const RemoveShowButton = styled.button`
 
 const AddDetailsButton = styled.button`
   background-color: transparent;
-  width: 8vh;
-  height: 8vh;
+
   border-radius: 150px;
   border-width: 0px;
-  margin-top: 2vh;
-  margin-left: 28vh;
   align-items: center;
   justify-content: center;
   display: flex;

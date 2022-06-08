@@ -2,29 +2,17 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { searchCocktailRequest } from "../../redux/cocktails/cocktailAction";
 import Button from "../Button/Button";
-//import "./SearchBar.css";
-import styled from "styled-components";
-
-const SearchBarButtonContainer = styled.div`
-  display: flex;
-`;
-
-const SearchBarInput = styled.input`
-  border-radius: 50px;
-  margin-right: 2vh;
-  width: 30vh;
-  height: 4vh;
-  color: #979797;
-  padding-left: 5%;
-  background-repeat: repeat-x;
-`;
+import { SearchBarButtonContainer, SearchBarInput } from "./SearchBar.style";
 interface ISearchBarProps {
   searchCocktailRequestFunc: (string) => {};
   action: string;
+  hasButton?: boolean;
 }
+
 const SearchBar: FunctionComponent<ISearchBarProps> = ({
   searchCocktailRequestFunc,
   action,
+  hasButton,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -51,7 +39,9 @@ const SearchBar: FunctionComponent<ISearchBarProps> = ({
           id="search-box"
         />
       </div>
-      <Button type="icon" iconName="search" onClick={handleSearchButton} />
+      {hasButton && (
+        <Button type="icon" iconName="search" onClick={handleSearchButton} />
+      )}
     </SearchBarButtonContainer>
   );
 };
@@ -62,6 +52,10 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
   searchCocktailRequestFunc: searchCocktailRequest,
+};
+
+SearchBar.defaultProps = {
+  hasButton: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

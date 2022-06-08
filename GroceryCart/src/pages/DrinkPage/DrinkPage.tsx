@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import "../../components/List/List.css";
 import MyModal from "../../components/MyModal/MyModal";
 import List from "../../components/List/List";
+
 interface IDrinkPageProps {
   drinks: any;
   drinksIngredients: any;
@@ -91,7 +92,7 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
       <List
         handleAdd={handleAdd}
         handleDetails={handleDetails}
-        data={drinks.data}
+        data={[drinks?.data[0], drinks?.data[1]]}
         isLoading={drinks.loading}
         cardType="showCase"
       />

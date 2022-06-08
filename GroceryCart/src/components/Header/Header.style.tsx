@@ -2,56 +2,52 @@ import styled from "styled-components";
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #000000;
+  width: 100%;
 
-  background-color: #333;
-  padding-left: 5vh;
-  padding-right: 10vh;
-  margin-bottom: 2vh;
-  position: fixed;
+  align-items: center;
+  align-content: space-between;
+  justify-content: space-between;
 `;
 
 const HeaderLinks = styled.ul`
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+  flex: 1;
+  padding-left: 0;
+  margin-left: 6em;
 
-  li {
-    float: left;
-  }
-
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  li a:hover:not(.active) {
-    background-color: #111;
-  }
-  .active {
-    background-color: #04aa6d;
+  height: 0%;
+  & > li {
+    & > a {
+      text-decoration: none;
+      &:hover,
+      &:focus {
+        background-color: #000000;
+        border-bottom: 1px solid #ffffff;
+      }
+    }
   }
 `;
 
 const MiddleContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: 1em;
+  flex: 1;
 `;
 
-const HeaderText = styled.div`
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 4em;
+  flex: 1;
+`;
+
+const Logo = styled.div`
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: pink;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: x-large;
 `;
 
@@ -60,16 +56,14 @@ const CartImageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  img {
-    height: 5vh;
-  }
+  height: 5vh;
 `;
 
 export {
   CartImageContainer,
   HeaderContainer,
   HeaderLinks,
-  HeaderText,
+  Logo,
+  LogoContainer,
   MiddleContainer,
 };
