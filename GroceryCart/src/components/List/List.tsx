@@ -3,13 +3,15 @@ import styled from "styled-components";
 import LoadingSpin from "react-loading-spin";
 import Card from "../Card/Card";
 
-const ListItem = styled.div`
-  display: flex;
-  border-radius: 5px;
-`;
-
 const ListContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  margin-left: 15vh;
+`;
+
+const ListCartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 interface IListProps {
@@ -30,37 +32,32 @@ const List: FunctionComponent<IListProps> = ({
 }) => {
   const renderList = () => {
     return data?.map((element, index) => (
-      <ListItem key={element?.idDrink}>
-        <Card
-          id={element?.idDrink}
-          thumb={element?.strDrinkThumb}
-          handleAdd={handleAdd}
-          handleDetails={handleDetails}
-          handleRemove={handleRemove}
-          data={{
-            serving: (element?.idDrink % 10) + 1,
-            minute: ((element?.idDrink * 4) % 10) + 1,
-            index: index,
-            element: element,
-            cocktail_name: element?.strDrink,
-          }}
-          type={cardType}
-        />
-      </ListItem>
+      <Card
+        key={element?.idDrink}
+        id={element?.idDrink}
+        thumb={element?.strDrinkThumb}
+        handleAdd={handleAdd}
+        handleDetails={handleDetails}
+        handleRemove={handleRemove}
+        data={{
+          serving: (element?.idDrink % 10) + 1,
+          minute: ((element?.idDrink * 4) % 10) + 1,
+          index: index,
+          element: element,
+          cocktail_name: element?.strDrink,
+        }}
+        type={cardType}
+      />
     ));
   };
-  return (
-    <ListContainer>
-      {cardType === "showCase" ? (
-        isLoading ? (
-          <LoadingSpin />
-        ) : (
-          renderList()
-        )
-      ) : (
-        renderList()
-      )}
-    </ListContainer>
+  return cardType === "showCase" ? (
+    isLoading ? (
+      <LoadingSpin />
+    ) : (
+      <ListContainer>{renderList()}</ListContainer>
+    )
+  ) : (
+    <ListCartContainer>{renderList()}</ListCartContainer>
   );
 };
 

@@ -92,7 +92,7 @@ const DrinkPage: FunctionComponent<IDrinkPageProps> = ({
       <List
         handleAdd={handleAdd}
         handleDetails={handleDetails}
-        data={[drinks?.data[0], drinks?.data[1]]}
+        data={drinks?.data}
         isLoading={drinks.loading}
         cardType="showCase"
       />

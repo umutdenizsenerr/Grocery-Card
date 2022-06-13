@@ -4,7 +4,7 @@ const HeaderContainer = styled.div`
   display: flex;
   background-color: #000000;
   width: 100%;
-
+  //position: fixed;
   align-items: center;
   align-content: space-between;
   justify-content: space-between;
@@ -33,6 +33,7 @@ const MiddleContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   margin-right: 1em;
   flex: 1;
 `;
@@ -56,7 +57,7 @@ const CartImageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 5vh;
+  border-radius: 50%;
 `;
 
 export {

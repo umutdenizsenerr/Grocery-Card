@@ -38,9 +38,9 @@ const Header = () => {
           <Provider store={store}>
             <SearchBar action="search_cocktail" />
           </Provider>
-          {/* <CartImageContainer>
+          <CartImageContainer>
             <Button iconName="cart" type="icon" />
-          </CartImageContainer> */}
+          </CartImageContainer>
         </MiddleContainer>
       ) : (
         <div />

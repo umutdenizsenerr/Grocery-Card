@@ -28,8 +28,8 @@ const RemoveShowButton = styled.button`
   border-radius: 150px;
   background-color: darksalmon;
   border-width: 0px;
-  width: 8vh;
-  height: 8vh;
+  width: 6vh;
+  height: 6vh;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -45,7 +45,8 @@ const RemoveShowButton = styled.button`
 
 const AddDetailsButton = styled.button`
   background-color: transparent;
-
+  width: 6vh;
+  height: 6vh;
   border-radius: 150px;
   border-width: 0px;
   align-items: center;

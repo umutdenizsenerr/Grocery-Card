@@ -9,6 +9,13 @@ import {
   ButtonsContainer,
   CircleContainer,
   MainContainer,
+  ListAmountText,
+  ListButtonContainer,
+  ListItemCart,
+  ListItemName,
+  ListItemThumbContainer,
+  ListItemThumb,
+  CartContainer,
 } from "./Card.style";
 
 interface ICartProps {
@@ -24,28 +31,27 @@ const Cart: FunctionComponent<ICartProps> = ({
   handleAdd,
 }) => {
   return (
-    // <ListItemCart key={index}>
-    //   <ListItemThumbContainer>
-    //     <ListItemThumb src={element.strDrinkThumb} alt="" />
-    //   </ListItemThumbContainer>
-    //   <ListItemName>{element.strDrink}</ListItemName>
-    //   <ListAmountText>{element.amount}</ListAmountText>
-    //   <ListButtonContainer>
-    //     <Button
-    //       type="icon"
-    //       iconName="remove"
-    //       onClick={handleRemove}
-    //       value={index}
-    //     ></Button>
-    //     <Button
-    //       type="icon"
-    //       iconName="add"
-    //       onClick={handleAdd}
-    //       value={index}
-    //     ></Button>
-    //   </ListButtonContainer>
-    // </ListItemCart>
-    <div>hello</div>
+    <ListItemCart key={index}>
+      <ListItemThumbContainer>
+        <ListItemThumb src={element.strDrinkThumb} alt="" />
+      </ListItemThumbContainer>
+      <ListItemName>{element.strDrink}</ListItemName>
+      <ListAmountText>{element.amount}</ListAmountText>
+      <ListButtonContainer>
+        <Button
+          type="icon"
+          iconName="remove"
+          onClick={handleRemove}
+          value={index}
+        ></Button>
+        <Button
+          type="icon"
+          iconName="add"
+          onClick={handleAdd}
+          value={index}
+        ></Button>
+      </ListButtonContainer>
+    </ListItemCart>
   );
 };
 
@@ -65,10 +71,7 @@ const ShowCase = ({
         </CardImageContainer>
         <CircleContainer>
           <Circle>{data.serving} SERVINGS</Circle>
-          <Circle>
-            {data.minute}
-            <div> MINS</div>
-          </Circle>
+          <Circle>{data.minute} MINS</Circle>
         </CircleContainer>
         <ButtonsContainer>
           <Button
@@ -113,12 +116,14 @@ const Card = ({
       />
     ),
     cartCase: (
-      <Cart
-        index={data.index}
-        element={data.element}
-        handleRemove={handleRemove}
-        handleAdd={handleAdd}
-      />
+      <CartContainer>
+        <Cart
+          index={data.index}
+          element={data.element}
+          handleRemove={handleRemove}
+          handleAdd={handleAdd}
+        />
+      </CartContainer>
     ),
   };
   return cardType[type];

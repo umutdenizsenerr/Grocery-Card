@@ -32,14 +32,12 @@ const CartPage: FunctionComponent<ICartPageProps> = ({
     return null;
   };
   return (
-    <div className="list-container">
-      <List
-        data={groceryCartList}
-        handleRemove={handleRemove}
-        cardType="cartCase"
-        handleAdd={handleAdd}
-      />
-    </div>
+    <List
+      data={groceryCartList}
+      handleRemove={handleRemove}
+      cardType="cartCase"
+      handleAdd={handleAdd}
+    />
   );
 };
 
